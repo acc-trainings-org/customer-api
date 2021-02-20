@@ -16,5 +16,5 @@
    6. `oc new-app fabric8/s2i-java:latest-java11~https://github.com/acc-trainings/customer-api.git#customer-api-rahul --name=customer-api` - Create new app under your project.
    7. `oc expose svc/customer-api` - Expose your application.
    8. `oc get route` - This will give you route to access your deployed application.
-   9. copy your url and add `http://copyYourUrl/customer-api/swagger-ui.html` and hit on the browser.
+   9. `http://copyYourUrl/customer-api/swagger-ui.html` copy your url and add and hit on the browser.
 
