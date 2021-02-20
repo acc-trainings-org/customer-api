@@ -23,5 +23,5 @@
    9. `http://copyYourUrl/customer-api/swagger-ui.html` copy your url and add and hit on the browser.
    10. `oc get pods` - Get the pod name
    11. `oc logs pod enterYourPodName` - To check logs
-   12. `delete app - oc delete all --selector app=customer-api` - Delete deployment.
+   12. `oc delete all --selector app=customer-api` - Delete deployment.
 
