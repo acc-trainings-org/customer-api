@@ -12,6 +12,7 @@
 * Copy login command (Top right click on ? mark and then select Command Line Tool) and then after click on Copy Login Command.
 * Open Command Line or Terminal and paste the login command.
 * ***Frequently used OC commands***
+
    1. `oc version` - Check OC CLI Version
    2. `oc status` - Check the status
    3. `oc projects` - To see available projects
