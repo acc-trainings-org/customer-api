@@ -1,7 +1,11 @@
 # customer-api
 
 ### Window User OpenShift CLI Setup
-* 
+* Go to https://console-openshift-console.apps.awsopenshift.ne-innovation.com and login with oktaidp
+* Create your account using Accenture ID and Sign in to the application
+* Click on the ? Icon and select Command Line Tools
+* Download the oc CLI as per your OS and extract the zipped file to a directory
+* Set path environment variables 
 
 ### OpenShift CLI Deployment
 * Login to OpenShift [OC Login](https://oauth-openshift.apps.awsopenshift.ne-innovation.com/oauth/authorize?client_id=console&redirect_uri=https%3A%2F%2Fconsole-openshift-console.apps.awsopenshift.ne-innovation.com%2Fauth%2Fcallback&response_type=code&scope=user%3Afull&state=89ae6812)
