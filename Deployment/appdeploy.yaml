@@ -6,7 +6,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: customer-api
+  name: customer-api-inital
 data:
   #spring.profiles.active: local
   spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
@@ -53,7 +53,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
           - configMapRef:
-              name: customer-api
+              name: customer-api-inital
         ports:
         - containerPort: 8080
         env:
