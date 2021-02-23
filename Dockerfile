@@ -5,9 +5,9 @@ WORKDIR /opt/app
 #RUN mvn clean install package
 
 # Refer to Maven build -> finalName
-ARG JAR_FILE=target/customer-service-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/customer-api-0.0.1-SNAPSHOT.jar
 
-# cp target/customer-service-0.0.1-SNAPSHOT.jar /opt/app/app.jar
+# cp target/customer-api-0.0.1-SNAPSHOT.jar /opt/app/app.jar
 COPY ${JAR_FILE} customer-service.jar
 
 EXPOSE 8080
