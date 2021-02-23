@@ -16,39 +16,39 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: acctrainings-initial
+  name: customer-api-inital
   namespace: "acctrainings-initial"
   labels:
-    app: acctrainings-initial
-    service: acctrainings-initial
+    app: customer-api-inital
+    service: customer-api-inital
 spec:
   ports:
   - port: 8080
     name: http
   selector:
-    app: acctrainings-initial-node
+    app: customer-api-inital-node
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: acctrainings-initial
+  name: customer-api-inital
   labels:
-    app: acctrainings-initial
+    app: customer-api-inital
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: acctrainings-initial-node
+      app: customer-api-inital-node
       version: v1
   template:
     metadata:
       labels:
-        app: acctrainings-initial-node
+        app: customer-api-inital-node
         version: v1
     spec:
       containers:
-      - name: acctrainings-initial-node
+      - name: customer-api-inital-node
         image: quay.io/acctrainings/customer-api:%%IMG_TAG%%
         imagePullPolicy: IfNotPresent
         envFrom:
@@ -64,14 +64,14 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: acctrainings-initial
+  name: acustomer-api-inital
   namespace: "acctrainings-initial"
   labels:
-    app: acctrainings-initial
+    app: customer-api-inital
 spec:
   to:
     kind: Service
-    name: acctrainings-initial
+    name: customer-api-inital
 status:
   ingress:
   - conditions:
