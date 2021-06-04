@@ -18,13 +18,13 @@
    3. `oc projects` - To see available projects
    4. `oc new-project acctrainings-firstName` - Create new project. Replace firstName with your name.
    5. `oc projects` - check again the project whether it's created
-   6. `oc new-app fabric8/s2i-java:latest-java11~https://github.com/acc-trainings/customer-api.git#customer-api-rahul --name=customer-api` - Create new app under your project.
+   6. `oc new-app fabric8/s2i-java:latest-java11~https://github.com/acc-trainings-org/customer-api.git#customer-api-rahul --name=customer-api-rahul` - Create new app under your project.
    7. `oc get services` - To get services
    8. `oc get pods` - To check created pods
    9. `oc get routes` - See available routes for your service.
    10. `oc expose svc/customer-api` - Expose/create route for your application.
    11. `oc get route` - This will give you route to access your deployed application.
-   12. `http://copyYourUrl/customer-api/swagger-ui.html` copy your url and add and hit on the browser.
+   12. `http://copyYourUrl/rahul/customer-api/swagger-ui.html` copy your url and add and hit on the browser.
    13. `oc get pods` - Get the pod name
    14. `oc logs pod enterYourPodName` - To check logs
    15. `oc delete all --selector app=customer-api` - Delete deployment.
