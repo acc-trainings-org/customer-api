@@ -101,7 +101,7 @@ Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-po
 ```
 
 ### Window User OpenShift CLI Setup
-* Go to https://console-openshift-console.apps.awsopenshift.ne-innovation.com and login with oktaidp
+* Go to https://console-openshift-console.apps.azureneocp.neinnovation-ocp.com/ and login with oktaidp
 * Create your account using Accenture ID and Sign in to the application
 * Click on the ? Icon and select Command Line Tools
 * Download the oc CLI as per your OS and extract the zipped file to a directory
