@@ -122,10 +122,10 @@ Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-po
    7. `oc get services` - To get services
    8. `oc get pods` - To check created pods
    9. `oc get routes` - See available routes for your service.
-   10. `oc expose svc/customer-api` - Expose/create route for your application.
+   10. `oc expose svc/customer-api-firstName` - Expose/create route for your application (replace firstName with your name).
    11. `oc get route` - This will give you route to access your deployed application.
-   12. `http://copyYourUrl/rahul/customer-api/swagger-ui.html` copy your url and add and hit on the browser.
+   12. `http://copyYourUrl/customer-api-firstName/swagger-ui.html` copy your url and add and hit on the browser. (replace firstName with your name)
    13. `oc get pods` - Get the pod name
    14. `oc logs pod enterYourPodName` - To check logs
-   15. `oc delete all --selector app=customer-api` - Delete deployment.
+   15. `oc delete all --selector app=customer-api-firstName` - Delete deployment.(replace firstName with your name)
 
