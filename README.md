@@ -108,7 +108,7 @@ Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-po
 * Set path environment variables 
 
 ### OpenShift CLI Deployment
-* Login to OpenShift [OC Login](https://console-openshift-console.apps.azureneocp.neinnovation-ocp.com/)
+* Login to OpenShift [OC Login](https://console-openshift-console.apps.aro.neion.net/)
 * Copy login command (Top right click on ? mark and then select Command Line Tool) and then after click on Copy Login Command.
 * Open Command Line or Terminal and paste the login command.
 * ***Frequently used OC commands***
