@@ -79,6 +79,3 @@ components:
         customerAddress:
           type: string
           example: 1000 Main Street, Hartford
-
-
-
