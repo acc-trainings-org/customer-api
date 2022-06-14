@@ -1,0 +1,88 @@
+openapi: '3.0.2'
+info:
+  title: CustomerAPI
+  version: '1.0'
+  contact:
+    name: Accenture Traning
+    email: ajay.ab.singh@accenture.com
+    url : http://accenture.com
+  ###############################  
+tags: 
+  - name : "Customer API"
+
+servers:
+  - url: https://localhost:8080/v1
+
+paths:
+  /customer:
+    post:
+      description:  Create Customer
+      summary:  Create  Customer for given request
+      operationId: createCustomer
+      requestBody :
+        description: create customer schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer'
+
+      responses:
+        '200':
+          description: Customer create successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer'
+        '500':
+          description:  Internal server Error 
+  /customer/{id}:
+      get:
+        operationId: getCustomer
+        tags:
+          - "Customet API"
+        parameters:
+          - name : id 
+            in: path
+            description: find customer
+            required: true
+            schema :
+              type: string
+        responses:
+          '200':
+            description: find my customer
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/customer'
+          '500':
+            description:  Internal server Error
+          '404':
+            description:  page not found
+          '400':
+            description:  This is not valid error
+
+components:
+  schemas:
+    customer:
+      description: this my model
+      type : object
+      required:
+        - "customerId"
+      properties:
+        customerId:
+          type: string
+          description:  Id of the customer
+          example:  12121
+          minLength: 5
+          maxLength: 8
+        customerName:
+          type: string
+          description:  name of the customer
+          example:  ajay singh
+          minLength: 5
+          maxLength: 10
+        customerAddress:
+          type: string
+          description:  Address
+          example:  hartford USA
+          
