@@ -1,0 +1,103 @@
+openapi: '3.0.2'
+info:
+  title: Customer API
+  version: '1.0'
+  contact: 
+    name: Accenture Training
+    email: contact@example.com
+    url: https://example.com
+
+tags:
+  - name: Customer API
+    description: Customer API related operations
+
+servers:
+  - url: https://localhost:8080
+
+paths:
+  /customer:
+    post:
+      description: Create a customer
+      summary: Create a customer for a given request
+      tags:
+        - "Customer API"
+      operationId: createCustomer
+      requestBody: 
+        description: create customer schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer is created successfully
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400': 
+          description: Invalid request
+        '401':
+          description: Unauthorized to create a new customer
+        '500':
+          description: Internal server error
+
+  /customer/{id}:
+    get:
+      description: Get a customer with a given id
+      summary: Get a customer information for a given request
+      tags:
+        - "Customer API"
+      operationId: getCustomer
+      parameters:
+        - name: id
+          in: path
+          description: Find customer
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: Customer is retrieved successfully
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400': 
+          description: Invalid request
+        '401':
+          description: Unauthorized to retrieve customer information
+        '404':
+          description: "Customer not found"
+        '500':
+          description: Internal server error
+
+
+components:
+  schemas:
+    Customer:
+      description: This is a customer model/schema
+      type: object
+      required:
+        - "customerId"
+      properties:
+        
+        customerId:
+          type: string
+          description: Id of the customer
+          example: 12345
+          minLength: 2
+          maxLength: 10
+        
+        customerName:
+          type: string
+          description: Name of the customer (firstName, lastName)
+          example: Tom, Sawyer
+        customerAddress:
+          type: string
+          description: Adress of the customer
+          example: Hoboken, NJ
+        officeCode:
+          type: number
+          example: 23
