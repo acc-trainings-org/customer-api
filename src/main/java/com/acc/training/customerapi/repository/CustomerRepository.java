@@ -4,13 +4,20 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import com.acc.training.customerapi.domain.CustomerDomain;
 import com.acc.training.customerapi.model.Customer;
 
-@Repository
-public class CustomerRepository {
+public interface CustomerRepository extends MongoRepository<CustomerDomain, String>{
     
+    public CustomerDomain findByCustomerId(String customerId);
+    public CustomerDomain findByCustomerAddress(String customerAddress);
+    public CustomerDomain findByCustomerName(String customerName);
+    public CustomerDomain findByOfficeCode(BigDecimal officeCode);
+
+    /**
     private static final Map<String,Customer> customerDB = new HashMap<>();
 
     static {
@@ -34,5 +41,5 @@ public class CustomerRepository {
         customerDB.put(customerObj.getCustomerId(), customerObj);
         return customerDB.get(customerObj.getCustomerId());
     }    
-
+    */
 }
