@@ -21,6 +21,13 @@ public class CustomerController implements CustomerApi{
 
     @Override
     public ResponseEntity<Customer> createCustomer(@Valid Customer body) {
+        
+        // I still can post customers with invalid id without adding these few lines, why doesn't generated api code prevent this? 
+
+        if ( !isValidId(body.getCustomerId()) ) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
         Customer response = service.createCustomer(body);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -29,8 +36,13 @@ public class CustomerController implements CustomerApi{
     @Override
     public ResponseEntity<Customer> getCustomer(String id) {
 
-        //TODO: implement logic to validate customer ID
+        // This returns status code 400 instead of 404 if the id doesn't follow the length requirements.
+        // Is there a way not to hardcode 2 and 10?
         
+        if ( !isValidId(id)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
         Customer response = service.getCustomer(id);
 
         if(response == null) {
@@ -38,6 +50,10 @@ public class CustomerController implements CustomerApi{
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    public boolean isValidId(String id) {
+        return (id.length() < 2 || id.length() > 10) ? false : true;
     }
     
 }
