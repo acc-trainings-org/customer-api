@@ -1,38 +1,12 @@
 package com.acc.training.customerapi.repository;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.acc.training.customerapi.model.Customer;
+import com.acc.training.customerapi.domain.CustomerDomain;
 
-@Repository
-public class CustomerRepository {
+public interface CustomerRepository extends MongoRepository<CustomerDomain, String> {
     
-    private static final Map<String,Customer> customerDB = new HashMap<>();
-
-    static {
-        initCustomerDB();
-    }
-
-    private static void initCustomerDB() {
-        Customer cust1 = new Customer();
-        cust1.setCustomerId("11111");
-        cust1.setCustomerName("Tom Sawyer");
-        cust1.setCustomerAddress("Hoboken, NJ");
-        cust1.setOfficeCode(BigDecimal.valueOf(075));
-
-        customerDB.put(cust1.getCustomerId(), cust1);
-    }
-
-    public Customer getCustomer(String id) {
-        return customerDB.get(id);
-    }
-
-    public Customer saveCustomer(Customer customerObj) {
-        customerDB.put(customerObj.getCustomerId(), customerObj);
-        return customerDB.get(customerObj.getCustomerId());
-    }
+    public CustomerDomain findByCustomerId(String id); 
+    
 }
