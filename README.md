@@ -4,14 +4,15 @@
 Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html#:~:text=A%20Project%20Object%20Model%20or,default%20values%20for%20most%20projects.) as following
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.8</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.acc.training</groupId>
 	<artifactId>customer-api</artifactId>
@@ -58,7 +59,6 @@ Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-po
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<!-- This 2019 version is required for OpenAPI 3 -->
 				<groupId>io.swagger.codegen.v3</groupId>
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
 				<version>3.0.36</version>
@@ -103,8 +103,8 @@ Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-po
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
+
 ```
 
 ### Window User OpenShift CLI Setup
