@@ -1,0 +1,94 @@
+openapi: '3.0.2'
+
+info:
+  title: Customer API
+  version: '1.0'
+  contact:
+    name: 'Accenture Training'
+    email: contact@exaple.com
+    url: http://example.com
+
+servers:
+  - url: https://localhost:8080
+
+tags:
+  - name: Customer API 
+
+paths:
+  /customer:
+    post:
+      description: Create Customer
+      tags:
+        - "Customer API"
+      summary: Create customer details for given request.
+      operationId: createCustomer
+      requestBody:
+        description: create customer in database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+
+      responses:
+        '200':
+          description: Customer Create Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '500':        
+          description: Internal Server Error
+        '400':
+          description: Bad Request (required filed is missing.)
+
+  /customer/{id}:
+    get:
+      operationId: getCustomer
+      tags:
+        - "Customer API"
+      summary: Fetch customer details for given ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+
+components:
+  schemas:
+    Customer:
+      description: This is customer model/schema
+      type: object
+      required:
+        - customerId
+      properties:
+        customerId:
+          type: string
+          description: ID of the customer
+          example: 12345
+          minLength: 5
+          maxLength: 8
+        customerName:
+          type: string
+          example: Rahul Anand
+        customerAddress:
+          type: string
+          example: Hartford, CT, USA
+        officeCode:
+          type: number
+          example: 045
+
