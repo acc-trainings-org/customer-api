@@ -2,45 +2,22 @@ package com.acc.training.customerapi.repository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Repository;
 
 import com.acc.training.customerapi.model.Customer;
+import com.acc.training.domain.CustomerDomain;
 
 @Repository
-public class CustomerRepository {
+public interface CustomerRepository extends MongoRepository<CustomerDomain, String> {
 
-    private static final Map<String, Customer> customerDB = new HashMap<>();
-
-    static{
-        initCustomerDB();
-    }
-
-
-    
-    public Customer fetchCustomer(String id) {
-        return customerDB.get(id);
-    }
-
-     
-
-    private static void initCustomerDB() {
-        Customer cust = new Customer();
-        cust.setCustomerId("12345");
-        cust.setCustomerName("Sandeep Patil");
-        cust.setCustomerAddress("Hartford");
-        cust.setOfficeCode(BigDecimal.valueOf(45));
-
-        customerDB.put(cust.getCustomerId(), cust);
-
-
-    }
-
-
-
-    public Customer saveCustomer(Customer requestBody) {
-        return customerDB.put(requestBody.getCustomerId(),requestBody);
-    }
+    public CustomerDomain findByCustomerId(String customerId);
+    public List<CustomerDomain> findByCustomerAddress(String customerAddress);
     
 }
