@@ -18,6 +18,6 @@ import com.acc.training.domain.CustomerDomain;
 public interface CustomerRepository extends MongoRepository<CustomerDomain, String> {
 
     public CustomerDomain findByCustomerId(String customerId);
-    public List<CustomerDomain> findByCustomerAddress(String customerAddress);
+    // public List<CustomerDomain> findByCustomerAddress(String customerAddress);
     
 }
