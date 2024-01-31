@@ -11,7 +11,7 @@ Update [POM](https://maven.apache.org/guides/introduction/introduction-to-the-po
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.10</version>
+		<version>2.7.13</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.acc.training</groupId>
