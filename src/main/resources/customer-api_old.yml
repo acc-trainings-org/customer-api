@@ -1,5 +1,5 @@
 openapi: '3.0.2'
- 
+
 info:
   title: Customer API
   version: '1.0'
@@ -7,13 +7,10 @@ info:
     name: Accenture Training
     email: contact@example.com
     url: http://example.com
- 
+
 servers:
   - url: http://localhost:8080
- 
-tags:
-  - name: Customer API
- 
+
 paths:
   /customer:
     post:
@@ -27,23 +24,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Customer'
- 
+              $ref: '#components/schemas/Customer'
+
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#components/schemas/Customer'
         '500':
           description: Internal Server Error
   /customer/{id}:
     get:
       summary: Fetch customer details
       operationId: getCustomer
-      tags:
-        - "Customer API"
       parameters:
         - name: id
           in: path
@@ -56,14 +51,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#components/schemas/Customer'
         '400':
           description: Bad request
         '404':
           description: Not Found
         '500':
           description: Internal Server Error
- 
+
 components:
   schemas:
     Customer:
@@ -88,3 +83,4 @@ components:
         officeCode:
           type: number
           example: 045
+          
