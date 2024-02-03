@@ -1,0 +1,84 @@
+openapi: '3.0.2'
+
+info:
+  title: Customer API
+  version: '1.0'
+  contact:
+      name: Accenture Training
+      email: contact@example.com
+      url:  http://example.com
+servers:
+  - url: http://localhost:8080
+
+tags:
+  - name: Customer API
+
+paths:
+  /customer:
+    post:
+      description: Create Customer
+      summary: create customer for given request
+      operationId: createCustomer
+      requestBody:
+        description: save customer info in database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal Server Error
+  /customer/{id}:
+      get:
+        summary: Fetch customer details
+        operationId: getCustomer
+        parameters:
+          - name: Id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+              '200':
+                description: ok
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Customer'
+              '404':
+                description: Not Found
+              '500':
+                  description: Internal Server Error
+
+
+
+components:
+  schemas:
+    Customer:
+      description: This is customer model/schema
+      type: object
+      required:
+          - "customerId"
+      properties:
+          customerId:
+            type: string
+            description: id of customer
+            example: 12345
+            minLength: 5
+            maxLength: 8
+          customerName:
+            type: string
+            example: Malik Burton
+          customerAddress:
+            type: string
+            example: Camden, NJ
+          officeCode:
+            type: number
+            example: 045
