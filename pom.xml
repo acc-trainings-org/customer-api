@@ -32,6 +32,7 @@
 			<version>3.2.2</version>
 		</dependency>
 
+		<!-- MongoDB -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,27 +40,32 @@
 			<version>3.2.2</version>
 		</dependency>
 
-	<dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency> -->
 
-	<dependency>
+		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.14</version>
 		</dependency>
 
+	<!-- Springboot Starter Webflux  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		
 	<!-- Mongo DB reactive -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+      	</dependency>
 
 		<dependency>
 			<groupId>io.swagger</groupId>
