@@ -1,0 +1,89 @@
+openapi: '3.0.2'
+
+info:
+  title: Customer API 
+  version: '1.0'
+  contact:
+    name: Accenture Training
+    email: contact@example.com
+    url: http://example.com
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /customer:
+    post:
+      description: Create Customer
+      summary: create customer for given request
+      operationId: createCustomer
+      tags:
+        - "Customer API"
+      requestBody:
+        description: create customer in database
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Customer'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '500' :
+          description: Internal Server Error
+
+  /customer/{id}:
+    get:
+      operationId: getCustomer
+      summary: Fetch customer details
+      tags:
+        - "Customer API"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    Customer:
+      description: This is customer schema/model
+      type: object
+      required:
+        - 'customerId'
+      properties:
+        customerId:
+          type: string
+          description: Id of customer
+          example: 12345
+          minLength: 5
+          maxLength: 8
+        customerName:
+          type: string
+          example: aditya deshpande
+          description: first and last name of customer
+        customerAddress:
+          type: string
+          example: india
+          description: address of customer
+        officeCode:
+          type: integer
+          example: 045
