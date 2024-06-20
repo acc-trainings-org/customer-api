@@ -1,0 +1,82 @@
+openapi: '3.0.2'
+info:
+  title: Customer API
+  version: '1.0'
+  contact:
+    name: Accenture Training
+    email: sagarmodi81@gmail.com
+    url: http://example.com
+servers:
+  - url: https://localhost:8080
+paths:
+  /customer:
+    post:
+      description: Create Customer
+      summary: Create customer for the given request
+      tags:
+        - "Customer API"
+      operationId: createCustomer
+      requestBody:
+        description: create customer in database
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal Server Error
+  
+  /customer/{id}:
+    get:
+      operationId: getCustomer
+      summary: Fetch customer details
+      tags:
+        - "Customer API"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    Customer:
+      description: This is Customer schema/model
+      type: object
+      required:
+        - 'customerId'
+      properties:
+        customerId:
+          type: string
+          description: ID of the customer
+          example: 12345
+          minLength: 5
+          maxLength: 8
+        customerName:
+          type: string
+          example: Sagar Modi
+          description: First name and last name of the customer
+        customerAddress:
+          type: string
+          example: Mumbai, India
+          description: Office address of the customer
