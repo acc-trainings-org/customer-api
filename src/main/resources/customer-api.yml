@@ -1,0 +1,88 @@
+openapi: '3.0.2'
+info:
+  title: Customer API
+  version: '1.0'
+  contact:
+    name: Accenture Spring Boot Training
+    email: sample@gmail.com
+servers:
+  - url: http://localhost:8080
+paths:
+  /customer:
+    post:
+      description: Create Customers
+      tags:
+        - "Customer API"
+      summary: This api will create customer based on your request.
+      operationId: createCustomer
+      requestBody:
+        description: create customer in database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+          
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal Server Error 
+  /customer/{id}:
+    get:
+      operationId: getCustomer
+      summary: Fetch customer details
+      tags:
+        - "Customer API"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error          
+components:
+  schemas:
+    Customer: 
+      description: This is the customer schema/model
+      type: object
+      required:
+        - 'customerId'
+      properties:
+        customerId:
+          type: string
+          description: ID of the customer
+          example: 23456
+          minLength: 5
+          maxLength: 8
+        customerName:
+          type: string
+          example: Venkateshan N
+          description: First Name and Last Name
+          minLength: 10
+          maxLength: 30
+        customerAddress:
+          type: string
+          example: Chennai
+          description: Address of the customer
+        customercode:
+          type: integer
+          example: 60
+          description: Unique customer code
+
+          
