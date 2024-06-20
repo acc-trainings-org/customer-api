@@ -1,0 +1,92 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+  contact:
+    name: saurabh jain
+    email: saurabhjainZ@gmail.com
+    url: http://example.com
+
+servers:
+  - url: http://localhost:8080 
+
+tags:
+  - name: Customer API  
+paths:
+  /customer:
+    post:
+      description: Create cutomer
+      summary: create cutomer for given request
+      tags:
+        - "Customer API"
+      operationId: createCustomer
+      requestBody:
+        description: create customer in DB
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+
+        '500':
+            description: internal server error
+
+  
+  /customer/{id}:
+    get:
+      operationId: getCustomer
+      summary: Fetch customer details
+      tags:
+        - "Customer API"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error          
+
+components:
+  schemas:
+    Customer:
+      description: This is customer schema/model
+      type: object
+      required:
+        - 'customerId'
+      properties:
+        customerId:
+          type: string
+          description: id of the customer
+          example: 12345
+          minLength: 5
+          maxLength: 8
+        customerName:
+          type: string
+          description: first and last name of the customer
+          example: saurabh jain
+        customerAddress:
+          type: string
+          description: address of the customer
+          example: Kharadi,Pune  
+
+
+
