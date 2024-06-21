@@ -1,40 +1,9 @@
 package com.acc.training.customer_api.repository;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import com.acc.training.customer_api.domain.CustomerDomain;
 
-import org.springframework.stereotype.Repository;
+public interface CustomerRepository extends MongoRepository<CustomerDomain, String> {
 
-import com.acc.training.customerapi.model.Customer;
-
-@Repository
-public class CustomerRepository {
-
-    private static final Map<String,Customer> customerDB = new HashMap<>();
-
-    static{
-        initCustomerDB();
-    }
-
-    private static void initCustomerDB() {
-        
-        Customer cust = new Customer();
-        cust.setCustomerId("12345");
-        cust.setCustomerName("Aditya");
-        cust.setCustomerAddress("India");
-        cust.setOfficeCode(845);
-
-        customerDB.put(cust.getCustomerId(), cust);
-    }
-
-    public Customer saveCustomer(Customer body) {
-        customerDB.put(body.getCustomerId(), body);
-        return customerDB.get(body.getCustomerId());
-    }
-
-    public Customer fetchCustomer(String id) {
-        return customerDB.get(id);
-    }
-    
+    CustomerDomain findByCustomerId(String customerId);
 }
