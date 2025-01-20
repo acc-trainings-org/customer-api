@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.acc.training.customer_api.domain.CustomerDomain;
 import com.acc.training.customer_api.repository.CustomerRepository;
 import com.acc.training.customerapi.model.Customer;
 
@@ -15,11 +16,33 @@ public class CustomerService {
     private CustomerRepository repository;
 
     public Customer createCustomer(Customer body) {
-        return repository.saveCustomer(body);
+        return mapDomainToModel(repository.save(mapModelToDomain(body)));
     }
 
     public Customer getCustomer(String id) {
-       return repository.fetchCustomer(id);
+       return mapDomainToModel( repository.findByCustomerId(id));
     }
     
+private CustomerDomain mapModelToDomain(Customer customer){
+
+    CustomerDomain customerDomain = new CustomerDomain();
+    customerDomain.setCustomerAddress(customer.getCustomerAddress());
+    customerDomain.setCustomerId(customer.getCustomerId());
+    customerDomain.setCustomerName(customer.getCustomerName());
+    customerDomain.setOfficeCode(customer.getOfficeCode());
+    return customerDomain;
+}
+
+private Customer mapDomainToModel(CustomerDomain customerDomain){
+
+    Customer customer = new Customer();
+    customer.setCustomerAddress(customerDomain.getCustomerAddress());
+    customer.setCustomerId(customerDomain.getCustomerId());
+    customer.setCustomerName(customerDomain.getCustomerName());
+    customer.setOfficeCode(customerDomain.getOfficeCode());
+    return customer;
+}
+
+
+
 }
