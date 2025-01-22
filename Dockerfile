@@ -8,7 +8,8 @@ WORKDIR temp/app
 RUN mvn clean install
 
 #start with base image
-FROM openjdk:11
+#FROM openjdk:11
+FROM openjdk:11-jre-slim
 
 ARG JAR_FILE=temp/app/target/*.jar
 

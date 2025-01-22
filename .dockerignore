@@ -1,0 +1,15 @@
+# Target directory
+target/
+
+# IDE files
+.idea/
+.classpath
+.project
+
+# Maven or Gradle files
+.mvn/
+.gradle/
+
+# OS specific files
+*.DS_Store
+Thumbs.db
