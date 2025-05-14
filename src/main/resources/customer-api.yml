@@ -1,0 +1,96 @@
+openapi: '3.0.3'
+
+info:
+  title: Customer API
+  version: '1.0'
+  description: API for Customer Management
+  contact:
+    name: Accenture Training
+    url: http://example.com
+    email: contact@email.com
+
+servers:
+  - url: https://localhost:8080
+    
+tags:
+  - name: CustomerAPI
+    description: API for Customer Management
+
+paths:
+  /customer:
+    post:
+      description: Create a new customer
+      summary: create a new customer for given data
+      operationId: createCustomer
+      tags:
+        - CustomerAPI
+      requestBody:
+        description: save customer information in database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal Server Error
+
+  /customer/{id}:
+    get:
+      description: Get Customer
+      summary: Fetch Customer Details
+      operationId: getCustomer
+      tags:
+        - CustomerAPI
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      
+      responses: 
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+
+
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - customerId 
+      properties:
+        customerId:
+          type: string
+          example: 12345
+          description: unique identifier for customer
+        customerName:
+          type: string
+          example: Rahul Anand
+          description: first name and last name of customer
+        customerAddress:  
+          type: string
+          example: 123 Main St, Hartford, CT
+        officeCode:
+          type: integer
+          example: 045
+          description: office code of customer
+  
+   
