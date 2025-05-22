@@ -1,21 +1,31 @@
-#mvn commands
-FROM maven:3.8-jdk-11-slim AS build
+# -------- Stage 1: Build the application --------
+FROM maven:3.9.6-eclipse-temurin-17 as builder
 
-COPY src temp/app/src
-COPY pom.xml temp/app
-WORKDIR temp/app
+# Set working directory inside container
+WORKDIR /customer-api
 
-RUN mvn clean install
+# Copy the Maven project files
+COPY pom.xml .
+COPY src ./src
 
-#start with base image
-#FROM openjdk:11
-FROM openjdk:11-jre-slim
+# Build the Spring Boot app (creates the JAR)
+RUN mvn clean package -DskipTests
 
-ARG JAR_FILE=temp/app/target/*.jar
+# -------- Stage 2: Run the application --------
+FROM openjdk:17-jdk-slim
 
-COPY --from=build ${JAR_FILE} customer-api.jar
+# Set working directory inside container
+WORKDIR /customer-api
 
-ENTRYPOINT ["java", "-jar","/customer-api.jar"]
+# Copy the built JAR from the previous stage
+COPY --from=builder /customer-api/target/*.jar customer-api.jar
+
+# Expose the default Spring Boot port
+#EXPOSE 8080
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "customer-api.jar"]
+
 
 
 #AWS_ECR_Login

@@ -1,5 +1,6 @@
 package com.acc.training.customerapi.repository;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class CustomerRepository {
         cust.setCustomerId("12345");
         cust.setCustomerName("Sandeep Patil");
         cust.setCustomerAddress("South Windsor");
-
+        cust.setOfficeCode(BigDecimal.valueOf(045));
         customerDB.put(cust.getCustomerId(), cust);
 
     }
